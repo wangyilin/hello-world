@@ -15,4 +15,16 @@ unsigned int CountLines(char* FileName);
 unsigned int CountEnglishWords(char* FileName);
 
 
+/*
+作用：
+		把源文件中的空行去掉，结果保存在目标文件名制定的文件中。
+参数值：
+    源文件名和目标文件名
+返回值：
+    空行数
+*/
+unsigned int DelBlankLines(char* srcFileName,char* desFileName);
+
+
+
 void TestTxtTools(void);
