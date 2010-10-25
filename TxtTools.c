@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #define MAX_LINE 1000 /* you can use define here, but const int in c++ is better*/
+#define MAX_WORD 100
 
 int CountLines(char* FileName){ 
 	int lineNum=0;
@@ -26,28 +27,45 @@ int CountLines(char* FileName){
 
 
 int CountEnglishWords(char* FileName){
+   int wordNum=0;
+   char word[MAX_WORD];
+   FILE *fp;
+
+   fp = fopen(FileName,"r");
+   if(fp == NULL){
+     fprintf(stderr,"open file %s fail\n",FileName);
+     return -1;
+   }
+   while(fscanf(fp,"%s",word)!=-1){
+     wordNum++;
+   }
+   fclose(fp);
+   return wordNum;
   
  }
 
 
 int DelBlankLines(char* srcFileName,char* desFileName){
-  char L[256];
-    int B_Num=0,Lend,i;
-    freopen(srcFileName,"r",stdin);    //文件必须以换行符结尾，不然会出错。
-    freopen(desFileName,"w",stdout);
-    while(scanf("%c",&L[0])!=EOF){
-       Lend=0;
-       while (L[Lend]!='\n'){
-         Lend++;
-         scanf("%c",&L[Lend]);
-       }
-       for(i=0;i<Lend;i++)
-         if(L[i]!=' ')break;
-       if (i==Lend) B_Num++;
-       else
-         for(i=0;i<=Lend;i++)printf("%c",L[i]);
+  int lineNum=0;
+  char line[MAX_LINE];
+  FILE *fpRead,*fpWrite;
+
+  fpRead = fopen(srcFileName,"r");
+  fpWrite = fopen(desFileName,"w");
+  if (fpRead == NULL){
+    fprintf(stderr,"open file %s fail\n",srcFileName);
+    return -1;
+  }
+  while(fgets(line,MAX_LINE,fpRead)!=NULL){
+    if (line[0]!='\n') {
+      lineNum++;
+      fputs(line,fpWrite);
     }
-    return B_Num;
+  }
+  fclose(fpWrite);
+  fclose(fpRead);
+  return lineNum;
+
 }
 
 
