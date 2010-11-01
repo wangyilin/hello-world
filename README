@@ -24,4 +24,17 @@ Enjoy a cup of coffee and music now, Let's go further. are you ready?
 	王意林 完成了FileNamtTools.c三个函数
 	任震宇 给所有的语句加上了注释
 	
-	
+2010/11/1
+Now, we have finished studying the basic git, and used git in two c files, TxtTools.c and FileNameTools.c. 
+
+Next, we will do a practical task. I push a txt file "射雕英雄传"。 When you read it on you mobile phone, it's too big to load it into your cell phone memeory. 
+you need to write a programe to split the txt file into some small txt files according to its content. 第一回风雪惊变 。。。 第二回江南七怪。。。。。The file name is section1.txt, section2.txt, section3.txt.......
+
+Use the functions in the TxtTools.c and FileNameTools.c if it is possible. 
+
+After finish this task, we will try more mobile phone programming. Hope you enjoy it. 
+
+
+
+
+

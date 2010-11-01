@@ -27,6 +27,7 @@ int CountLines(char* FileName){
 
 
 int CountEnglishWords(char* FileName){
+
    int wordNum=0;
    char word[MAX_WORD];
    FILE *fp;
@@ -36,7 +37,7 @@ int CountEnglishWords(char* FileName){
      fprintf(stderr,"open file %s fail\n",FileName);
      return -1;
    }
-   while(fscanf(fp,"%s",word)!=-1){
+   while(fscanf(fp,"%s",word)!=EOF){ /* EOF is End of File */
      wordNum++;
    }
    fclose(fp);
@@ -56,6 +57,12 @@ int DelBlankLines(char* srcFileName,char* desFileName){
     fprintf(stderr,"open file %s fail\n",srcFileName);
     return -1;
   }
+
+  if (fpWrite == NULL){
+    fprintf(stderr,"open file %s fail\n",desFileName);
+    return -1;
+  }
+
   while(fgets(line,MAX_LINE,fpRead)!=NULL){
     if (line[0]!='\n') {
       lineNum++;
@@ -65,18 +72,21 @@ int DelBlankLines(char* srcFileName,char* desFileName){
   fclose(fpWrite);
   fclose(fpRead);
   return lineNum;
-
 }
 
 
 void TestTxtTools(void)
 {
 	char * FileName = "test.txt";
+	char * NewFileName = "test_new.txt";
 	unsigned int numLines;
 	unsigned int numWords;
 	numLines = CountLines(FileName);
-	printf("%d",numLines);
+	printf("The line number in the %s is %d\n",FileName, numLines);
 	
-	/*numWords = CountEnglishWords(FileName);
-	printf("%u %u\n",numLines,numWords);*/
+	numWords = CountEnglishWords(FileName);
+	printf("The word number in the %s is %d\n",FileName, numWords);
+
+	DelBlankLines(FileName,NewFileName);
+
 }

@@ -57,8 +57,7 @@ int GetExt(char *whole,char* Ext)
 void TestFileNameTools(void)
 {
 	char whole[]="c:/windows/system32/abc.dll";
-	/*char des[256];*/
-	char *des = NULL;
+	char des[256];
 
 	GetDir(whole,des);
 	printf("%s\n",des);
